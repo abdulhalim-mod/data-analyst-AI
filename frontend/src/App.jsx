@@ -27,7 +27,7 @@ import {
 } from "recharts";
 import "./App.css";
 
-const API = "http://127.0.0.1:8000";
+const API = "https://data-analyst-ai-nn8d.onrender.com";
 
 function App() {
   const [file, setFile] = useState(null);

@@ -4,6 +4,7 @@ import uuid
 from pathlib import Path
 
 import pandas as pd
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -12,7 +13,16 @@ from analysis_engine import load_dataset, analyze_dataset
 from ai_service import generate_insights, answer_question
 
 app = FastAPI(title="Data Analyst AI Agent")
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://abdulhalim-mod.github.io",
+        "http://localhost:5173",
+    ],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 FRONTEND_ORIGIN = os.getenv(
     "FRONTEND_ORIGIN",
     "http://localhost:5173"
